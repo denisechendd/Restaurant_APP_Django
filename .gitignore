@@ -1,25 +1,6 @@
-# Django
 *.pyc
-__pycache__/
-myvenv/
+*__pycache__
+.venv
 db.sqlite3
-media/
-
-# macOS
 .DS_Store
 
-# Editor and IDE specific files
-.idea/
-.vscode/
-.flake8
-
-# Environment variables
-env.py
-
-# Build artifacts
-staticfiles/
-
-# Local settings
-local_settings.py
-.venv/
-venv/

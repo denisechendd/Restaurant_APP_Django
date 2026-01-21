@@ -4,7 +4,7 @@ A full-stack Django web application for managing restaurant reservations.
 Built as part of the Code Institute Full Stack Software Development course (Portfolio Project 4).
 
 Deployed site: [Heroku Link](https://pp4-restaurant-booking-app-7cc89317a653.herokuapp.com)  
-Repository: [GitHub Repo](https://github.com/Bear81/restaurant_booking)
+Repository: [GitHub Repo](https://github.com/denisechendd/Restaurant_APP_Django.git)
 
 ---
 
@@ -133,11 +133,6 @@ The project was managed using Agile principles:
 - Tasks moved across _To Do → In Progress → Review → Done_.
 - Iterative development with frequent testing.
 
-![Github Project Board](documentation/readme_images/github_project.png)
-![Github Project Card](documentation/readme_images/github_project_card.png)
-
-[Github Project Board](https://github.com/users/Bear81/projects/7/views/1)
-
 ---
 
 ## Testing
@@ -211,20 +206,6 @@ It follows the structure required by the Code Institute assessment criteria.
 | Menu detail | Click item | Item detail + back button | Works         | ✅        |
 
 ---
-
-## Validator Testing
-
-- **HTML**: W3C Validator →
-  ![W3C Validator](documentation/readme_images/W3CValidator.png)
-
-- **CSS**: Jigsaw Validator →
-  ![Jigsaw Validator](documentation/readme_images/JigsawValidator.png)
-  ![Jigsaw Validator]()
-- **Accessibility**: Lighthouse audit →
-  ![Lighthouse audit](documentation/readme_images/lighthouse.png)
-
----
-
 ## Responsiveness Testing
 
 Tested using Chrome DevTools and real devices.
@@ -298,8 +279,8 @@ Results: layout adapts, footer sticky, no horizontal overflow.
 
 1. Clone repo:
    ```bash
-   git clone https://github.com/Bear81/restaurant_booking.git
-   cd restaurant_booking
+   git clone https://github.com/denisechendd/Restaurant_APP_Django.git
+   cd Restaurant_APP_Django
    ```
 2. Install dependencies:
    ```bash
