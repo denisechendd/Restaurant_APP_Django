@@ -1,0 +1,309 @@
+/* Global Styles */
+:root {
+    --bistro-red: #b0303c;
+    --bistro-dark: #121212;
+    --bistro-grey: #1f1f1f;
+    --bistro-text-light: #f8f9fa;
+    --bistro-gold: #d5c3aa;
+}
+
+
+body {
+    background-color: var(--bistro-dark);
+    color: var(--bistro-text-light);
+    font-family: 'Playfair Display', serif; /* Optional: add to base.html */
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+a.nav-link {
+    color: #D5C3AA !important;
+}
+
+a.nav-link:hover {
+    color: #E09F3E !important;
+}
+
+.footer {
+    border-top: 1px solid #5C5C5C;
+}
+
+.footer .list-inline-item a {
+    color: #D5C3AA;
+}
+
+.footer .list-inline-item a:hover {
+    color: #E09F3E;
+}
+
+/* Home Page */
+.hero {
+    position: relative;
+}
+
+.hero-content {
+    z-index: 2;
+}
+
+.hero-wrap {
+    background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('/static/images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-logo-img {
+    max-width: 150px;
+    margin-bottom: 2rem;
+}
+
+.hero-title {
+    font-size: 4rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+.testimonials {
+    position: relative;
+}
+
+.testimonials .testimonial {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.testimonials .testimonial p {
+    color: #E0E0E0;
+}
+
+/* Menu List Page - Card Image Styling */
+.card-img {
+    height: 100%;
+    object-fit: cover; /* Ensures the image covers the entire area without distortion */
+    object-position: center; /* Centers the image within the card */
+}
+
+/* About Us Page */
+.about-us h1,
+.about-us h2,
+.container h1,
+.container h2 {
+    color: var(--color-accent);
+}
+
+.card {
+    background-color: var(--color-bg-light);
+    border: none;
+    border-radius: 8px;
+}
+
+.card-title {
+    color: var(--color-primary);
+}
+
+.card-text {
+    color: var(--color-text-dark);
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.gallery-item img {
+    transition: transform 0.3s ease;
+}
+
+.gallery-item img:hover {
+    transform: scale(1.05);
+}
+
+/* Contact Us Page */
+.container p {
+    color: var(--color-text-dark);
+}
+
+.btn-primary,
+.btn-primary:hover {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-primary:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+}
+
+.alert-success {
+    background-color: #4CAF50;
+    border-color: #46A049;
+    color: var(--color-text-light);
+}
+
+/* Menu List Page */
+.btn-secondary {
+    background-color: var(--color-bg-light);
+    border-color: var(--color-border);
+    color: var(--color-text-light);
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-text-light);
+}
+
+.btn-bistro {
+    background-color: var(--bistro-red);
+    color: white;
+    border-radius: 50px;
+    padding: 12px 30px;
+    border: none;
+    transition: 0.3s;
+}
+
+.btn-bistro:hover {
+    background-color: #8a242e;
+    transform: translateY(-2px);
+    color: white;
+}
+
+.btn-outline-bistro {
+    border: 2px solid white;
+    color: white;
+    border-radius: 50px;
+    padding: 12px 30px;
+}
+
+/* Profile Page */
+.container h2,
+.container p,
+.table,
+.table th,
+.table td {
+    color: var(--color-text-light); /* Light text */
+}
+
+.list-group-item {
+    background-color: var(--color-bg-light);
+    border: 1px solid var(--color-border);
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.btn-outline-primary,
+.btn-outline-primary:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--color-primary);
+    color: var(--color-text-light);
+}
+
+.btn-outline-danger,
+.btn-outline-danger:hover {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-outline-danger:hover {
+    background-color: #dc3545;
+    color: var(--color-text-light);
+}
+
+/* Booking Confirmation and Form Pages */
+.table thead {
+    background-color: var(--color-bg-dark); /* Dark header */
+    color: var(--color-text-light);
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: var(--color-bg-light);
+}
+
+.table-hover tbody tr:hover {
+    background-color: var(--color-accent); /* Lighter on hover */
+    color: var(--color-text-light);
+}
+
+.btn-warning,
+.btn-warning:hover {
+    background-color: #ffc107;
+    border-color: #ffc107;
+    color: #212529;
+}
+
+.btn-warning:hover {
+    background-color: #e0a800;
+    border-color: #d39e00;
+}
+
+.btn-danger,
+.btn-danger:hover {
+    background-color: #dc3545;
+    border-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    border-color: #bd2130;
+}
+
+.menu-card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    height: 300px;
+}
+
+.menu-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: 0.5s;
+}
+
+.menu-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: black;
+    padding: 10px 25px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: bold;
+}
+
+/* Footer Customization */
+.footer-bistro {
+    background-color: var(--bistro-red);
+    color: white;
+    padding: 80px 0 40px;
+}
+
+.footer-bistro h5 {
+    color: white;
+    font-weight: bold;
+    margin-bottom: 1.5rem;
+}
+
+form {
+    background-color: var(--color-bg-light);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

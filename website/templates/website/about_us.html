@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="history-section text-light text-center d-flex align-items-center justify-content-center" style="background-image: url('{{ history_image.image_url }}'); background-size: cover; background-position: center; height: 60vh;">
+    <div class="history-content position-relative">
+        <h1>Our History</h1>
+        <p>Learn more about our rich history and traditions.</p>
+    </div>
+</section>
+
+<section class="team-members container my-5">
+    <h2 class="text-center">Meet Our Team</h2>
+    <div class="row">
+        {% for member in team_members %}
+        <div class="col-md-4 mb-4">
+            <div class="card h-100">
+                <img src="{{ member.image_url }}" class="card-img-top" alt="{{ member.name }}">
+                <div class="card-body">
+                    <h3 class="card-title">{{ member.name }}</h3>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="gallery text-light text-center d-flex align-items-center" style="background-size: cover; background-position: center; padding: 2rem;">
+    <div class="container position-relative">
+        <h2>Our Gallery</h2>
+        <div class="row">
+            {% for image in gallery_images %}
+            <div class="col-md-4 mb-4">
+                <div class="gallery-item">
+                    <img src="{{ image.image_url }}" class="img-fluid" alt="{{ image.name }}">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

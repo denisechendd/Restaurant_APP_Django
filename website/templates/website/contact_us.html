@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Us{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Book Now</h1>
+    <p class="text-center mb-5">If you have any questions or would like to make a booking, please use the form below.</p>
+    
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <h2>Get in Touch</h2>
+            <p><strong>Email:</strong> info@restaurant.com</p>
+            <p><strong>Phone:</strong> +123 456 7890</p>
+            <p><strong>Address:</strong> 123 Restaurant Street, Food City</p>
+        </div>
+        
+        <div class="col-md-6 mb-4">
+            <h2>Make a Booking</h2>
+
+            {% if success_message %}
+                <div class="alert alert-success" role="alert">
+                    {{ success_message }}
+                </div>
+            {% endif %}
+
+            <form method="post" action="{% url 'create_booking' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn btn-accent mt-3">Book a Table</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

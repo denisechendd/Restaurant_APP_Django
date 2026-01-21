@@ -1,0 +1,58 @@
+<!-- prettier-ignore-file -->
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="section dark-background">
+  <div class="container" data-aos="fade-up">
+    <div class="row g-5 align-items-center">
+
+      <!-- Left Side Image -->
+      <div class="col-lg-5 booking-img-side">
+        <img src="{% static 'images/interior.jpg' %}" alt="Restaurant Interior" class="img-fluid rounded shadow-lg">
+      </div>
+
+      <!-- Right Side Form -->
+      <div class="col-lg-7">
+        <div class="ps-lg-5">
+            <span class="text-uppercase" style="color: var(--bistro-red); letter-spacing: 2px;">Reservation</span>
+            <h2 class="display-5 fw-bold mb-4">Book your table</h2>
+
+            <form method="post" class="php-email-form">
+                {% csrf_token %}
+                <div class="row g-3">
+                    <div class="col-md-12">
+                        <label class="form-label">Date</label>
+                        {{ form.booking_date }}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Time</label>
+                        {{ form.booking_time }}
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Guests</label>
+                        {{ form.number_of_guests }}
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Special Requests</label>
+                        {{ form.special_requests }}
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-bistro btn-lg w-100">Book Table →</button>
+                </div>
+            </form>
+
+            <div class="text-center mt-4">
+                <p class="text-muted">To book call</p>
+                <h3 style="color: var(--bistro-red);">+123 232 123</h3>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+{% endblock %}
+
+

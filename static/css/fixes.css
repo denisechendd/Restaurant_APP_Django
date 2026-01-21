@@ -1,0 +1,255 @@
+/* ==== Mobile overflow & alignment fixes ==== */
+
+/* Stop any accidental sideways scrolling */
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Keep images and blocks inside viewport */
+img,
+.img-fluid,
+.card-img,
+.hero,
+.carousel,
+.container,
+.container-fluid,
+.section {
+  max-width: 100%;
+}
+
+/* Card images: avoid stretching/overflow on phones */
+@media (max-width: 576px) {
+  .card-img {
+    height: auto;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Bootstrap rows sometimes overflow without a container */
+.row {
+  --bs-gutter-x: 1.5rem;
+}
+
+/* Center titles/breadcrumbs on smaller screens */
+@media (max-width: 768px) {
+  .page-title h1,
+  .section-title,
+  .section-title h2 {
+    text-align: center;
+  }
+  .page-title .breadcrumbs ol {
+    justify-content: center;
+  }
+}
+
+/* Tables: allow scrolling on phones */
+@media (max-width: 576px) {
+  .table {
+    display: block;
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Wrap long text in buttons/links instead of breaking layout */
+.btn,
+.nav-link,
+a {
+  word-wrap: break-word;
+  overflow-wrap: anywhere;
+}
+
+/* Prevent clipped shadows/child elements */
+section,
+.section {
+  overflow-x: hidden;
+}
+
+/* Tame large padding/margins on mobile */
+@media (max-width: 576px) {
+  .px-5,
+  .ps-5,
+  .pe-5 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  .mx-5,
+  .ms-5,
+  .me-5 {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+}
+
+/* ==== Buttons & forms ==== */
+.btn-primary {
+  background-color: #0d6efd !important;
+  border-color: #0d6efd !important;
+  color: #fff !important;
+}
+.btn-primary:hover,
+.btn-primary:focus {
+  background-color: #0b5ed7 !important;
+  border-color: #0a58ca !important;
+}
+
+.btn-outline-primary {
+  color: #0d6efd !important;
+  border-color: #0d6efd !important;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: #0d6efd !important;
+  color: #fff !important;
+}
+
+/* Inputs readable on dark background */
+.form-control {
+  background-color: #1f1f1f !important;
+  color: #f5f5f5 !important;
+  border-color: #444 !important;
+}
+.form-control::placeholder {
+  color: #bdbdbd !important;
+}
+
+/* Auth page headings */
+.account h1,
+.account h2,
+.account label {
+  color: #ffffff !important;
+}
+
+/* ==== Layout: sticky footer ==== */
+html,
+body {
+  height: 100%;
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
+}
+.footer {
+  flex-shrink: 0;
+}
+
+/* Accent button (used for key CTAs) */
+.btn-accent {
+  background-color: #e09f3e;
+  border-color: #e09f3e;
+  color: #212529;
+}
+.btn-accent:hover,
+.btn-accent:focus {
+  background-color: #cf8d36;
+  border-color: #cf8d36;
+  color: #212529;
+}
+
+/* ==== Auth page tweaks ==== */
+.account .btn-primary {
+  background-color: #e09f3e;
+  border-color: #e09f3e;
+  color: #212529;
+}
+.account .btn-primary:hover,
+.account .btn-primary:focus {
+  background-color: #cf8d36;
+  border-color: #cf8d36;
+  color: #212529;
+}
+
+.account .form-control,
+.account input[type='text'],
+.account input[type='email'],
+.account input[type='password'] {
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border: 1px solid #444;
+}
+.account label {
+  color: #f0f0f0;
+}
+.account a {
+  color: #e09f3e;
+}
+.account a:hover {
+  color: #f7a84c;
+}
+
+/* Auth form cleanup */
+.account form ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.account form li {
+  margin-bottom: 0.85rem;
+}
+.account form label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: #f0f0f0;
+}
+.account form input,
+.account form select,
+.account form textarea {
+  width: 100%;
+  display: block;
+  background-color: #1f1f1f;
+  color: #f0f0f0;
+  border: 1px solid #444;
+  border-radius: 0.25rem;
+  padding: 0.5rem 0.75rem;
+}
+.account .helptext {
+  font-size: 0.875rem;
+  color: #bdbdbd;
+}
+.account .errorlist {
+  list-style: none;
+  color: #dc3545;
+  margin: 0 0 0.5rem 0;
+  padding: 0;
+}
+
+/* Tighter table on small screens */
+/* Responsive Form Image Fix */
+@media (max-width: 991px) {
+  .booking-img-side {
+      display: none;
+  }
+}
+
+.form-control-bistro {
+  background: transparent !important;
+  border: 1px solid #444 !important;
+  color: white !important;
+  padding: 12px !important;
+  border-radius: 5px !important;
+}
+
+.form-control-bistro:focus {
+  border-color: var(--bistro-red) !important;
+  box-shadow: none !important;
+}
+
+/* Modern Table */
+.table-bistro {
+  background: var(--bistro-grey);
+  border-radius: 15px;
+  overflow: hidden;
+  color: white;
+}
+
+.table-bistro thead {
+  background: var(--bistro-red);
+}
