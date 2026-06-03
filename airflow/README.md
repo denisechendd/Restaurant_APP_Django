@@ -26,7 +26,7 @@ Apache Airflow 是一個工作流編排平台，可幫助自動化餐廳預定�
 
 ## 🎯 三個核心 DAG 说明
 
-### 1️⃣ **餐聽預定管理 DAG** (`restaurant_booking_dag.py`)
+### 1️⃣ **餐廳預定管理 DAG** (`restaurant_booking_dag.py`)
 
 **功能说明**：管理日常預定操作
 
