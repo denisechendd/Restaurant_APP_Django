@@ -6,6 +6,21 @@ This directory contains Apache Airflow DAGs and configuration files for automati
 
 Apache Airflow is a workflow orchestration platform that helps automate recurring tasks in your restaurant booking application. This setup includes three main DAGs:
 
+✨ Airflow 的作用
+📅 DAG 排程管理：你可以在 UI 中查看所有 DAG（工作流）的排程，確保任務在正確的時間執行。
+
+⏱️ 手動觸發測試：方便在開發或測試階段，直接手動觸發 DAG，驗證流程是否正確。
+
+📊 任務監控與日誌：Airflow 提供任務執行狀態與詳細日誌，讓你能快速定位錯誤或效能瓶頸。
+
+📧 自動化通知：當任務完成或需要通知客戶時，可以自動寄送 Email，減少人工操作。
+
+💾 資料庫備份：透過定時任務，自動執行每日資料庫備份，確保資料安全。
+
+📝 報表生成：定期產生訂位或業務報表，支援決策與營運分析。
+
+🔔 異常警示：當任務失敗時，Airflow 會即時發送警示，避免錯誤被忽略。
+
 ### 1. **Restaurant Booking DAG** (`restaurant_booking_dag.py`)
 Manages daily booking operations:
 - ✅ Auto-confirm pending bookings older than 24 hours
