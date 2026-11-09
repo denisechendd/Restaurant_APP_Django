@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
+import subprocess
 import sys
 
 
@@ -13,7 +14,7 @@ def run_devserver(runserver_args):
     call_command('check')
     call_command('makemigrations', 'bookings', 'website', check=True, dry_run=True)
     call_command('migrate', interactive=False)
-    call_command('test')
+    subprocess.run([sys.executable, '-m', 'pytest'], check=True)
 
     execute_from_command_line([sys.argv[0], 'runserver', *runserver_args])
 

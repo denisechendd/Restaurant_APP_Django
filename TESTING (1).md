@@ -34,7 +34,7 @@ Repository: https://github.com/Bear81/restaurant_booking
 
 Local setup:
 ```bash
-pip install -r requirements.txt
+python -m pip install -r requirements-dev.txt
 python manage.py migrate
 python manage.py runserver
 ```
@@ -43,10 +43,31 @@ python manage.py runserver
 
 ## Automated Tests
 
-Run test suite:
+Run all Django and pytest tests:
 ```bash
-python manage.py test
+python -m pytest
 ```
+
+Run checks before applying migrations:
+```bash
+python manage.py check
+python manage.py makemigrations bookings website --check --dry-run
+python manage.py migrate
+```
+
+Start the local server only after the checks, migrations, and tests pass:
+```bash
+python manage.py devserver
+```
+`devserver` runs the checks above, applies migrations, runs `pytest`, then starts
+Django's development server. To run the regular Django commands manually, use
+`python manage.py migrate` followed by `python manage.py runserver`.
+
+Model unit tests use pytest functions and fixtures. Tests that access Django's
+database request the `db` fixture from `pytest-django`; form and request-flow
+tests also run in the same pytest suite. The GitHub Actions workflow runs
+`check`, checks for missing migrations in the project apps, and runs pytest on
+pushes and pull requests.
 
 Run flake8 (style):
 ```bash

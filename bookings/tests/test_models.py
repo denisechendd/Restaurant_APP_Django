@@ -1,21 +1,28 @@
-from django.test import TestCase
-from django.contrib.auth.models import User
-from bookings.models import Booking, Table
 from datetime import datetime
 from django.utils import timezone
+import pytest
+from django.contrib.auth.models import User
+from bookings.models import Booking, Table
 
-class TestBookingModel(TestCase):
-    def setUp(self):
-        self.user = User.objects.create_user(username='testuser', password='password')
-        self.table = Table.objects.create(table_number='A1', capacity=4)
-        self.booking = Booking.objects.create(
-            user=self.user,
-            table=self.table,
-            booking_datetime=timezone.make_aware(datetime(2030, 1, 1, 19, 0)),
-            number_of_guests=2,
-            special_requests='Window seat'
-        )
 
-    def test_str_method(self):
-        expected = f"Booking for {self.user} on {self.booking.booking_datetime}"
-        self.assertEqual(str(self.booking), expected)
+@pytest.fixture
+def booking(db):
+    user = User.objects.create_user(username='pytest-user', password='test-pass')
+    table = Table.objects.create(table_number='P1', capacity=4)
+    return Booking.objects.create(
+        user=user,
+        table=table,
+        booking_datetime=timezone.make_aware(datetime(2030, 1, 1, 19, 0)),
+        number_of_guests=2,
+        special_requests='pytest fixture',
+    )
+
+
+def test_booking_string_shows_user_and_datetime(booking):
+    expected = f'Booking for {booking.user} on {booking.booking_datetime}'
+
+    assert str(booking) == expected
+
+
+def test_booking_defaults_to_pending(booking):
+    assert booking.status == 'pending'

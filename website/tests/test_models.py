@@ -1,63 +1,64 @@
-from django.test import TestCase
-from django.utils import timezone
+import pytest
 from django.core.exceptions import ValidationError
-from website.models import RestaurantInfo, WebsiteImage, MenuPost
+from django.utils import timezone
+
+from website.models import MenuPost, RestaurantInfo, WebsiteImage
 
 
-class RestaurantInfoModelTest(TestCase):
-
-    def test_restaurant_info_creation(self):
-        restaurant = RestaurantInfo.objects.create(
-            name='The Great Restaurant',
-            address='123 Food Street, Gourmet City',
-            contact_details='Phone: 123-456-7890',
-            opening_hours='Mon-Fri: 9am - 9pm',
-            description='A fine dining experience.',
-            about_us='We have been serving delicious food since 1980.'
-        )
-        self.assertEqual(str(restaurant), 'The Great Restaurant')
-        self.assertTrue(isinstance(restaurant, RestaurantInfo))
+@pytest.fixture
+def website_image(db):
+    return WebsiteImage.objects.create(
+        name='Menu Image',
+        category='menu',
+        image_url='https://example.com/menu.jpg',
+    )
 
 
-class WebsiteImageModelTest(TestCase):
+def test_restaurant_info_string_returns_name(db):
+    restaurant = RestaurantInfo.objects.create(
+        name='The Great Restaurant',
+        address='123 Food Street',
+        contact_details='Phone: 123-456-7890',
+        opening_hours='Mon-Fri: 9am - 9pm',
+    )
 
-    def test_website_image_creation(self):
-        image = WebsiteImage.objects.create(
-            name='Hero Image 1',
-            category='hero',
-            image_url='https://example.com/hero-image.jpg'
-        )
-        self.assertEqual(str(image), 'Hero Image 1')
-        self.assertTrue(isinstance(image, WebsiteImage))
-
-    def test_invalid_category(self):
-        image = WebsiteImage(
-            name='Invalid Image',
-            category='invalid_category',
-            image_url='https://example.com/invalid-image.jpg'
-        )
-        with self.assertRaises(ValidationError):
-            image.full_clean()
+    assert str(restaurant) == 'The Great Restaurant'
 
 
-class MenuPostModelTest(TestCase):
+def test_website_image_string_returns_name(website_image):
+    assert str(website_image) == 'Menu Image'
 
-    def setUp(self):
-        self.image = WebsiteImage.objects.create(
-            name='Menu Image 1',
-            category='menu',
-            image_url='https://example.com/menu-image.jpg'
-        )
 
-    def test_menu_post_creation(self):
-        menu_post = MenuPost.objects.create(
-            title='Delicious Pasta',
-            blurb='Try our new pasta dish!',
-            content='<p>This is a great pasta dish.</p>',
-            image=self.image,
-            created_at=timezone.now(),
-            updated_at=timezone.now()
-        )
-        self.assertEqual(str(menu_post), 'Delicious Pasta')
-        self.assertTrue(isinstance(menu_post, MenuPost))
-        self.assertEqual(menu_post.image, self.image)
+def test_website_image_rejects_unknown_category():
+    image = WebsiteImage(
+        name='Invalid Image',
+        category='invalid_category',
+        image_url='https://example.com/invalid.jpg',
+    )
+
+    with pytest.raises(ValidationError) as exc_info:
+        image.full_clean()
+
+    assert 'category' in exc_info.value.message_dict
+
+
+def test_menu_post_string_returns_title(db, website_image):
+    post = MenuPost.objects.create(
+        title='Delicious Pasta',
+        blurb='A new pasta dish',
+        content='<p>Fresh pasta.</p>',
+        image=website_image,
+    )
+
+    assert str(post) == 'Delicious Pasta'
+
+
+def test_menu_post_can_be_created_without_an_image(db):
+    post = MenuPost.objects.create(
+        title='Image-free special',
+        content='<p>Available today.</p>',
+        image=None,
+    )
+
+    assert post.image is None
+    assert post.created_at <= timezone.now()
