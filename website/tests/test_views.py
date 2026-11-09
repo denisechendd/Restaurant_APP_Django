@@ -36,10 +36,11 @@ class WebsiteViewsTest(TestCase):
         self.assertIn('testimonial_background', response.context)
 
     def test_menus_view(self):
-        response = self.client.get(reverse('menus'))
+        response = self.client.get(reverse('menu_list'))
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'website/menus.html')
-        self.assertIn('menu_images', response.context)
+        self.assertTemplateUsed(response, 'website/menu_list.html')
+        self.assertIn('posts', response.context)
+        self.assertEqual(len(response.context['posts']), 1)
 
     def test_about_us_view(self):
         response = self.client.get(reverse('about_us'))

@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from bookings.models import Booking, Table
 from datetime import datetime
+from django.utils import timezone
 
 class TestBookingModel(TestCase):
     def setUp(self):
@@ -10,7 +11,7 @@ class TestBookingModel(TestCase):
         self.booking = Booking.objects.create(
             user=self.user,
             table=self.table,
-            booking_datetime=datetime(2030, 1, 1, 19, 0),
+            booking_datetime=timezone.make_aware(datetime(2030, 1, 1, 19, 0)),
             number_of_guests=2,
             special_requests='Window seat'
         )

@@ -192,8 +192,12 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [BASE_DIR / "static"]
 STATIC_ROOT = BASE_DIR / "staticfiles"
 
-# Recommended WhiteNoise storage (hashed filenames)
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# Use plain static URLs for local development and tests. In production, use
+# WhiteNoise's manifest storage after collectstatic has generated its manifest.
+STATICFILES_STORAGE = (
+    "django.contrib.staticfiles.storage.StaticFilesStorage"
+    if DEBUG else "whitenoise.storage.CompressedManifestStaticFilesStorage"
+)
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"

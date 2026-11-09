@@ -4,6 +4,20 @@ import os
 import sys
 
 
+def run_devserver(runserver_args):
+    """Run the local checks and tests before starting Django's dev server."""
+    import django
+    from django.core.management import call_command, execute_from_command_line
+
+    django.setup()
+    call_command('check')
+    call_command('makemigrations', 'bookings', 'website', check=True, dry_run=True)
+    call_command('migrate', interactive=False)
+    call_command('test')
+
+    execute_from_command_line([sys.argv[0], 'runserver', *runserver_args])
+
+
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'restaurant_booking.settings')
@@ -15,7 +29,10 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    execute_from_command_line(sys.argv)
+    if len(sys.argv) > 1 and sys.argv[1] == 'devserver':
+        run_devserver(sys.argv[2:])
+    else:
+        execute_from_command_line(sys.argv)
 
 
 if __name__ == '__main__':

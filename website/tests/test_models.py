@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.utils import timezone
+from django.core.exceptions import ValidationError
 from website.models import RestaurantInfo, WebsiteImage, MenuPost
 
 
@@ -30,12 +31,13 @@ class WebsiteImageModelTest(TestCase):
         self.assertTrue(isinstance(image, WebsiteImage))
 
     def test_invalid_category(self):
-        with self.assertRaises(ValueError):
-            WebsiteImage.objects.create(
-                name='Invalid Image',
-                category='invalid_category',  # This should raise an error
-                image_url='https://example.com/invalid-image.jpg'
-            )
+        image = WebsiteImage(
+            name='Invalid Image',
+            category='invalid_category',
+            image_url='https://example.com/invalid-image.jpg'
+        )
+        with self.assertRaises(ValidationError):
+            image.full_clean()
 
 
 class MenuPostModelTest(TestCase):
